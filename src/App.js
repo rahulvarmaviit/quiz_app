@@ -106,6 +106,34 @@ function App() {
         <p>Total Score: {totalScore}</p>
         {perfectScore && <p className="perfect-score">🎉 Perfect Score! 🎉</p>}
         {!perfectScore && <p>Keep practicing to improve your score!</p>}
+        {/* Footer */}
+      <footer className="footer">
+        <p>Connect with me:</p>
+        <div className="social-links">
+          <a
+            href="https://github.com/rahulvarmaviit"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-link github"
+          >
+            GitHub
+          </a>
+          <a
+            href="http://www.linkedin.com/in/rahul-varma-vatsavai-62a051290"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-link linkedin"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="mailto:rahulvarmaviit@gmail.com"
+            className="social-link gmail"
+          >
+            Gmail
+          </a>
+        </div>
+      </footer>
       </div>
     );
   }
@@ -154,10 +182,38 @@ function App() {
           {feedback}
         </p>
       )}
-
       {/* Real-Time Score */}
       <p className="score">Current Score: {score}</p>
+      {/* Footer */}
+      <footer className="footer">
+        <p>Connect with me:</p>
+        <div className="social-links">
+          <a
+            href="https://github.com/rahulvarmaviit"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-link github"
+          >
+            GitHub
+          </a>
+          <a
+            href="http://www.linkedin.com/in/rahul-varma-vatsavai-62a051290"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-link linkedin"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="mailto:rahulvarmaviit@gmail.com"
+            className="social-link gmail"
+          >
+            Gmail
+          </a>
+        </div>
+      </footer>
     </div>
+    
   );
 }
 
