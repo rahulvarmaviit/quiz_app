@@ -41,6 +41,14 @@ This is a web-based quiz application built using React. The app fetches quiz dat
      ![Quiz Interface](./screenshots/Screenshot%202025-02-02%20002724.png)
   -Results Page
      ![Results Page](./screenshots/Screenshot%202025-02-02%20002827.png)
+## Demo Video
+
+<p align="center">
+  <video width="640" height="360" controls>
+    <source src="https://raw.githubusercontent.com/rahulvarmaviit/quiz_app/master/screenshots/Screen Recording 2025-02-02 083933.mp4" type="video/mp4">
+  </video>
+</p>
+
 # Submission Details #
 Repository Link : https://github.com/rahulvarmaviit/quiz_app
 Live Demo : [https://quiz-app-rahulvarma.vercel.app/]
