@@ -16,11 +16,8 @@ function App() {
   // Function to fetch quiz data from the API
   const fetchQuizData = async () => {
     try {
-      const response = await axios.get('https://api.jsonserve.com/Uw5CrX', {
-        headers: {
-          Authorization: 'Bearer YOUR_TOKEN_HERE', // Add token if required
-        },
-      });
+      console.log('Fetching quiz data...');
+      const response = await axios.get('/Uw5CrX');
       console.log('API Response:', response.data);
       const quizQuestions = response.data.questions || [];
       setQuizData(quizQuestions);
@@ -28,24 +25,26 @@ function App() {
     } catch (err) {
       console.error('Error Details:', err);
       setError('Error fetching quiz data');
-      setQuizData([]);
       setLoading(false);
     }
   };
 
+  useEffect(() => {
+    fetchQuizData();
+  }, []);
+
   // Timer logic
   useEffect(() => {
-    if (!quizData || quizData.length === 0) return; // Exit early if no data
-  
     if (timeLeft > 0 && !showResults) {
       const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
       return () => clearTimeout(timer);
     } else if (timeLeft === 0) {
+      // Automatically move to the next question when time runs out
       if (currentQuestionIndex < quizData.length - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
-        setTimeLeft(10);
+        setTimeLeft(10); // Reset timer for the next question
       } else {
-        setShowResults(true);
+        setShowResults(true); // Show results after the last question
       }
     }
   }, [timeLeft, showResults, currentQuestionIndex, quizData]);
@@ -90,11 +89,11 @@ function App() {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="container">Loading...</div>;
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return <div className="container">{error}</div>;
   }
 
   if (showResults) {
@@ -109,38 +108,42 @@ function App() {
         {perfectScore && <p className="perfect-score">🎉 Perfect Score! 🎉</p>}
         {!perfectScore && <p>Keep practicing to improve your score!</p>}
         {/* Footer */}
-      <footer className="footer">
-        <p>Connect with me:</p>
-        <div className="social-links">
-          <a
-            href="https://github.com/rahulvarmaviit"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-link github"
-          >
-            GitHub
-          </a>
-          <a
-            href="http://www.linkedin.com/in/rahul-varma-vatsavai-62a051290"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-link linkedin"
-          >
-            LinkedIn
-          </a>
-          <a
-            href="mailto:rahulvarmaviit@gmail.com"
-            className="social-link gmail"
-          >
-            Gmail
-          </a>
-        </div>
-      </footer>
+        <footer className="footer">
+          <p>Connect with me:</p>
+          <div className="social-links">
+            <a
+              href="https://github.com/rahulvarmaviit"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-link github"
+            >
+              GitHub
+            </a>
+            <a
+              href="http://www.linkedin.com/in/rahul-varma-vatsavai-62a051290"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-link linkedin"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="mailto:rahulvarmaviit@gmail.com"
+              className="social-link gmail"
+            >
+              Gmail
+            </a>
+          </div>
+        </footer>
       </div>
     );
   }
 
   const currentQuestion = quizData[currentQuestionIndex];
+
+  if (!currentQuestion) {
+    return <div className="container">No questions available.</div>;
+  }
 
   return (
     <div className="container">
@@ -184,8 +187,10 @@ function App() {
           {feedback}
         </p>
       )}
+
       {/* Real-Time Score */}
       <p className="score">Current Score: {score}</p>
+
       {/* Footer */}
       <footer className="footer">
         <p>Connect with me:</p>
@@ -215,7 +220,6 @@ function App() {
         </div>
       </footer>
     </div>
-    
   );
 }
 
