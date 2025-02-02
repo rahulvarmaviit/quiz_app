@@ -38,15 +38,14 @@ function App() {
       const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
       return () => clearTimeout(timer);
     } else if (timeLeft === 0) {
-      // Automatically move to the next question when time runs out
       if (currentQuestionIndex < quizData.length - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
-        setTimeLeft(10); // Reset timer for the next question
+        setTimeLeft(10);
       } else {
-        setShowResults(true); // Show results after the last question
+        setShowResults(true);
       }
     }
-  }, [timeLeft, showResults, currentQuestionIndex]);
+  }, [timeLeft, showResults, currentQuestionIndex, quizData.length]); // Add quizData.length here
 
   // Handle answer selection
   const handleAnswerSelect = (questionId, selectedOption) => {
