@@ -14,12 +14,15 @@ function App() {
   const [score, setScore] = useState(0); // Real-time score
 
   // Function to fetch quiz data from the API
-  const fetchQuizData = async () => {
+const fetchQuizData = async () => {
   try {
-    const response = await axios.get(
-      'https://cors-anywhere.herokuapp.com/https://api.jsonserve.com/Uw5CrX'
-    );
+    console.log('Fetching quiz data using CORS proxy...');
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    const apiUrl = 'https://api.jsonserve.com/Uw5CrX';
+
+    const response = await axios.get(proxyUrl + apiUrl);
     console.log('API Response:', response.data);
+
     const quizQuestions = response.data.questions || [];
     setQuizData(quizQuestions);
     setLoading(false);
