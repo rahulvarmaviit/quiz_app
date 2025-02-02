@@ -16,24 +16,27 @@ function App() {
   // Function to fetch quiz data from the API
   const fetchQuizData = async () => {
     try {
-      const response = await axios.get('/Uw5CrX');
+      const response = await axios.get('https://api.jsonserve.com/Uw5CrX', {
+        headers: {
+          Authorization: 'Bearer YOUR_TOKEN_HERE', // Add token if required
+        },
+      });
       console.log('API Response:', response.data);
-      const quizQuestions = response.data.questions;
+      const quizQuestions = response.data.questions || [];
       setQuizData(quizQuestions);
       setLoading(false);
     } catch (err) {
       console.error('Error Details:', err);
       setError('Error fetching quiz data');
+      setQuizData([]);
       setLoading(false);
     }
   };
 
-  useEffect(() => {
-    fetchQuizData();
-  }, []);
-
   // Timer logic
   useEffect(() => {
+    if (!quizData || quizData.length === 0) return; // Exit early if no data
+  
     if (timeLeft > 0 && !showResults) {
       const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
       return () => clearTimeout(timer);
@@ -45,7 +48,7 @@ function App() {
         setShowResults(true);
       }
     }
-  }, [timeLeft, showResults, currentQuestionIndex, quizData.length]); // Add quizData.length here
+  }, [timeLeft, showResults, currentQuestionIndex, quizData]);
 
   // Handle answer selection
   const handleAnswerSelect = (questionId, selectedOption) => {
