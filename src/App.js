@@ -15,19 +15,19 @@ function App() {
 
   // Function to fetch quiz data from the API
   const fetchQuizData = async () => {
-    try {
-      console.log('Fetching quiz data...');
-      const response = await axios.get('/Uw5CrX');
-      console.log('API Response:', response.data);
-      const quizQuestions = response.data.questions || [];
-      setQuizData(quizQuestions);
-      setLoading(false);
-    } catch (err) {
-      console.error('Error Details:', err);
-      setError('Error fetching quiz data');
-      setLoading(false);
-    }
-  };
+  try {
+    console.log('Fetching quiz data...');
+    const response = await axios.get('https://api.jsonserve.com/Uw5CrX');
+    console.log('API Response:', response.data);
+    const quizQuestions = response.data.questions || [];
+    setQuizData(quizQuestions);
+    setLoading(false);
+  } catch (err) {
+    console.error('Error Details:', err.response ? err.response.data : err.message);
+    setError('Error fetching quiz data');
+    setLoading(false);
+  }
+};
 
   useEffect(() => {
     fetchQuizData();
