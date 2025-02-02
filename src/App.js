@@ -16,14 +16,15 @@ function App() {
   // Function to fetch quiz data from the API
   const fetchQuizData = async () => {
   try {
-    console.log('Fetching quiz data...');
-    const response = await axios.get('https://api.jsonserve.com/Uw5CrX');
+    const response = await axios.get(
+      'https://cors-anywhere.herokuapp.com/https://api.jsonserve.com/Uw5CrX'
+    );
     console.log('API Response:', response.data);
     const quizQuestions = response.data.questions || [];
     setQuizData(quizQuestions);
     setLoading(false);
   } catch (err) {
-    console.error('Error Details:', err.response ? err.response.data : err.message);
+    console.error('Error Details:', err.message);
     setError('Error fetching quiz data');
     setLoading(false);
   }
