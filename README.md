@@ -42,8 +42,8 @@ This is a web-based quiz application built using React. The app fetches quiz dat
   -Results Page
      ![Results Page](./screenshots/Screenshot%202025-02-02%20002827.png)
 # Submission Details #
-Repository Link : 
-Live Demo : [ ]
+Repository Link : https://github.com/rahulvarmaviit/quiz_app
+Live Demo : [https://quiz-app-rahulvarma.vercel.app/]
 # Author #
 Vatsavai Rahul Varma
 GitHub: @rahulvarmaviit
