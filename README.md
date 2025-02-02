@@ -45,7 +45,7 @@ This is a web-based quiz application built using React. The app fetches quiz dat
 
 <p align="center">
   <video width="640" height="360" controls>
-    <source src="https://raw.githubusercontent.com/rahulvarmaviit/quiz_app/master/screenshots/Screen Recording 2025-02-02 083933.mp4" type="video/mp4">
+    <source src="https://raw.githubusercontent.com/rahulvarmaviit/quiz_app/master/screenshots/Screen%Recording%2025-02-02%083933.mp4" type="video/mp4">
   </video>
 </p>
 
