@@ -89,56 +89,59 @@ function App() {
   };
 
   if (loading) {
-    return <div className="container">Loading...</div>;
-  }
+  return <div className="container">Loading...</div>;
+}
 
-  if (error) {
-    return <div className="container">{error}</div>;
-  }
+if (error) {
+  return <div className="container">{error}</div>;
+}
 
-  if (showResults) {
-    const totalScore = calculateScore();
-    const maxScore = quizData.length * 4; // Maximum possible score
-    const perfectScore = totalScore === maxScore;
+if (!quizData || quizData.length === 0) {
+  return <div className="container">No questions available.</div>;
+}
 
-    return (
-      <div className="container results">
-        <h1>Quiz Results</h1>
-        <p>Total Score: {totalScore}</p>
-        {perfectScore && <p className="perfect-score">🎉 Perfect Score! 🎉</p>}
-        {!perfectScore && <p>Keep practicing to improve your score!</p>}
-        {/* Footer */}
-        <footer className="footer">
-          <p>Connect with me:</p>
-          <div className="social-links">
-            <a
-              href="https://github.com/rahulvarmaviit"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="social-link github"
-            >
-              GitHub
-            </a>
-            <a
-              href="http://www.linkedin.com/in/rahul-varma-vatsavai-62a051290"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="social-link linkedin"
-            >
-              LinkedIn
-            </a>
-            <a
-              href="mailto:rahulvarmaviit@gmail.com"
-              className="social-link gmail"
-            >
-              Gmail
-            </a>
-          </div>
-        </footer>
-      </div>
-    );
-  }
+if (showResults) {
+  const totalScore = calculateScore();
+  const maxScore = quizData.length * 4; // Maximum possible score
+  const perfectScore = totalScore === maxScore;
 
+  return (
+    <div className="container results">
+      <h1>Quiz Results</h1>
+      <p>Total Score: {totalScore}</p>
+      {perfectScore && <p className="perfect-score">🎉 Perfect Score! 🎉</p>}
+      {!perfectScore && <p>Keep practicing to improve your score!</p>}
+      {/* Footer */}
+      <footer className="footer">
+        <p>Connect with me:</p>
+        <div className="social-links">
+          <a
+            href="https://github.com/rahulvarmaviit"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-link github"
+          >
+            GitHub
+          </a>
+          <a
+            href="http://www.linkedin.com/in/rahul-varma-vatsavai-62a051290"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-link linkedin"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="mailto:rahulvarmaviit@gmail.com"
+            className="social-link gmail"
+          >
+            Gmail
+          </a>
+        </div>
+      </footer>
+    </div>
+  );
+}
   const currentQuestion = quizData[currentQuestionIndex];
 
   if (!currentQuestion) {
