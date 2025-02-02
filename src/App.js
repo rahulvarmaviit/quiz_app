@@ -17,10 +17,10 @@ function App() {
 const fetchQuizData = async () => {
   try {
     console.log('Fetching quiz data using CORS proxy...');
-    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    const proxyUrl = 'https://api.allorigins.win/raw?url=';
     const apiUrl = 'https://api.jsonserve.com/Uw5CrX';
 
-    const response = await axios.get(proxyUrl + apiUrl);
+    const response = await axios.get(proxyUrl + encodeURIComponent(apiUrl));
     console.log('API Response:', response.data);
 
     const quizQuestions = response.data.questions || [];
