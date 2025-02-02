@@ -17,7 +17,7 @@ function App() {
   const fetchQuizData = async () => {
   try {
     const response = await axios.get(
-      'https://cors-anywhere.herokuapp.com/https://api.jsonserve.com/Uw5CrX'
+      'https://cors-anywhere.herokuapp.com//Uw5CrX'
     );
     console.log('API Response:', response.data);
     const quizQuestions = response.data.questions || [];
