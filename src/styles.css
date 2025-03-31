@@ -1,188 +1,170 @@
-/* General Reset */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient( 90deg, #4b6cb7, #182848); /* Gradient background */
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  /* Container */
-  .container {
-    max-width: 600px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 20px;
-    background: #ffffff; /* White background for content */
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-    text-align: center;
-  }
-  
-  /* Header */
-  h1 {
-    color: #333333;
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-  
-  /* Progress Bar */
-  .progress-bar {
-    width: 100%;
-    height: 10px;
-    background: #e0e0e0;
-    border-radius: 5px;
-    overflow: hidden;
-    margin-bottom: 20px;
-  }
-  
-  .progress-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #ff7eb3, #ff758c); /* Gradient for progress bar */
-    transition: width 0.5s ease-in-out;
-  }
-  
-  /* Timer */
-  .timer {
-    font-size: 1.2rem;
-    color: #555555;
-    margin-bottom: 20px;
-  }
-  
-  /* Question */
-  .question {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-    color: #333333;
-  }
-  
-  /* Options */
-  .options {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .options li {
-    margin-bottom: 10px;
-  }
-  
-  .options label {
-    display: block;
-    padding: 15px;
-    background: #f9f9f9;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s ease, background 0.3s ease;
-    border: 2px solid transparent; /* Add a border for hover effect */
-  }
-  
-  .options label:hover {
-    background: linear-gradient( #97d496, #9de09c ); /* Vibrant gradient on hover */
-    transform: scale(1.02);
-    border: 2px solid #181717; /* Highlight border on hover */
-  }
-  
-  /* Feedback */
-  .feedback {
-    text-align: center;
-    font-size: 1rem;
-    margin-top: 20px;
-    padding: 10px;
-    border-radius: 8px;
-    animation: fadeIn 0.5s ease-in-out;
-  }
-  
-  .feedback.correct {
-    background: linear-gradient(135deg, #16ab16, #56a756); /* Gradient for correct feedback */
-    color: #ffffff;
-  }
-  
-  .feedback.wrong {
-    background: linear-gradient(135deg, #ff0909, #ff0909); /* Gradient for wrong feedback */
-    color: #ffffff;
-  }
-  
-  /* Score */
-  .score {
-    text-align: center;
-    font-size: 1.2rem;
-    margin-top: 20px;
-    color: #555555;
-  }
-  
-  /* Results */
-  .results {
-    text-align: center;
-  }
-  
-  .results p {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #333333;
-  }
-  
-  .results .perfect-score {
-    color: #ffffff;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4); /* Gradient for perfect score */
-    padding: 10px;
-    border-radius: 8px;
-    display: inline-block;
-  }
-  
-  /* Animation */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  /* Footer */
-.footer {
-    margin-top: 1px;
-    padding: 1px;
-    background: #f9f9f9;
-    border-top: 1px solid #ddd;
-    text-align: center;
-  }
-  
-  .footer p {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 10px;
-  }
-  
-  .social-links {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-  }
-  
-  .social-link {
-    padding: 10px 15px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    color: #fff;
-    transition: transform 0.2s ease, box-shadow 0.3s ease;
-  }
-  
-  .social-link.github {
-    background: #333; /* GitHub's dark color */
-  }
-  
-  .social-link.linkedin {
-    background: #0077b5; /* LinkedIn's blue color */
-  }
-  
-  .social-link.gmail {
-    background: #ea4335; /* Gmail's red color */
-  }
-  
-  .social-link:hover {
-    transform: scale(1.1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f0f4f8;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  max-width: 800px;
+  width: 100%;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.categories {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.category-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background: #4CAF50;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.category-btn.completed {
+  background: #e0e0e0;
+  cursor: not-allowed;
+}
+
+.switch-btn {
+  margin: 20px 0;
+  padding: 10px 20px;
+  background: #e0e0e0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.quiz-container {
+  margin: 20px 0;
+  text-align: left;
+}
+
+.question-block {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 5px;
+}
+
+.options {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.options li {
+  margin: 5px 0;
+}
+
+.submit-btn {
+  padding: 5px 10px;
+  background: #2196F3;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  margin-top: 10px;
+}
+
+.submit-btn:hover {
+  background: #0d47a1;
+}
+
+.submit-btn:disabled {
+  background: #e0e0e0;
+  cursor: not-allowed;
+}
+
+.final-submit-btn {
+  padding: 10px 20px;
+  background: #ff6b6b;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  margin-top: 20px;
+}
+
+.final-submit-btn:hover {
+  background: #c62828;
+}
+
+.final-submit-btn:disabled {
+  background: #e0e0e0;
+  cursor: not-allowed;
+}
+
+.selected-answer {
+  margin-top: 10px;
+  color: #333;
+}
+
+
+/* Final Results Layout */
+.results {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.result-cards {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px; /* Space between cards */
+  padding: 20px 0;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.result-card {
+  background: #f0f4f8;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  width: 30%; /* Adjust based on number of categories */
+  box-sizing: border-box;
+}
+
+.result-card h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.result-card p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.restart-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #e0e0e0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+/* Overall Percentage */
+.overall-result {
+  margin-top: 20px;
+  font-weight: bold;
+  color: #4CAF50;
+}

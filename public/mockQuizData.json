@@ -1,0 +1,50 @@
+{
+  "testName": "III CSE 2026",
+  "categories": [
+    {
+      "categoryName": "Coding",
+      "questions": [
+        {
+          "question": "What is the main use of CSS?",
+          "options": ["Styling", "Logic", "Database", "Authentication"],
+          "correctAnswer": "Styling"
+        },
+        {
+          "question": "What is the time complexity of binary search?",
+          "options": ["O(n)", "O(log n)", "O(n^2)", "O(1)"],
+          "correctAnswer": "O(log n)"
+        }
+      ]
+    },
+    {
+      "categoryName": "Aptitude",
+      "questions": [
+        {
+          "question": "What is the next number in the sequence: 2, 4, 8, 16, ...?",
+          "options": ["20", "32", "24", "30"],
+          "correctAnswer": "32"
+        },
+        {
+          "question": "If a car travels 60 km/h, how far does it go in 2 hours?",
+          "options": ["100 km", "120 km", "150 km", "180 km"],
+          "correctAnswer": "120 km"
+        }
+      ]
+    },
+    {
+      "categoryName": "Reasoning",
+      "questions": [
+        {
+          "question": "Which word is the odd one out? Apple, Banana, Carrot, Dog",
+          "options": ["Apple", "Banana", "Carrot", "Dog"],
+          "correctAnswer": "Dog"
+        },
+        {
+          "question": "What comes next in the pattern: A, C, E, G, ...?",
+          "options": ["H", "I", "J", "K"],
+          "correctAnswer": "I"
+        }
+      ]
+    }
+  ]
+}
