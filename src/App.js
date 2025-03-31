@@ -14,24 +14,21 @@ function App() {
   const [score, setScore] = useState(0); // Real-time score
 
   // Function to fetch quiz data from the API
-const fetchQuizData = async () => {
-  try {
-    console.log('Fetching quiz data using CORS proxy...');
-    const proxyUrl = 'https://api.allorigins.win/raw?url=';
-    const apiUrl = 'https://api.jsonserve.com/Uw5CrX';
+  const fetchQuizData = async () => {
+    try {
+      const response = await axios.get('/mockQuizData.json'); // Fetch from local mock data
+      console.log('API Response:', response.data);
 
-    const response = await axios.get(proxyUrl + encodeURIComponent(apiUrl));
-    console.log('API Response:', response.data);
-
-    const quizQuestions = response.data.questions || [];
-    setQuizData(quizQuestions);
-    setLoading(false);
-  } catch (err) {
-    console.error('Error Details:', err.message);
-    setError('Error fetching quiz data');
-    setLoading(false);
-  }
-};
+      // Extract questions from the new structure
+      const quizQuestions = response.data.categories[0]?.questions || [];
+      setQuizData(quizQuestions);
+      setLoading(false);
+    } catch (err) {
+      console.error('Error Details:', err);
+      setError('Error fetching quiz data');
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     fetchQuizData();
@@ -54,23 +51,24 @@ const fetchQuizData = async () => {
   }, [timeLeft, showResults, currentQuestionIndex, quizData]);
 
   // Handle answer selection
-  const handleAnswerSelect = (questionId, selectedOption) => {
+  const handleAnswerSelect = (selectedOption) => {
     setSelectedAnswers((prevAnswers) => ({
       ...prevAnswers,
-      [questionId]: selectedOption,
+      [currentQuestionIndex]: selectedOption, // Track by question index
     }));
 
     // Provide feedback
-    if (selectedOption.is_correct) {
+    const currentQuestion = quizData[currentQuestionIndex];
+    if (selectedOption === currentQuestion.correctAnswer) {
       setFeedback('Correct!');
-      setScore(score + 4); // Update score for correct answer
+      setScore(score + 4); // Assuming 4 points per correct answer
     } else {
       setFeedback('Wrong!');
     }
 
     // Move to the next question after a short delay
     setTimeout(() => {
-      setFeedback(''); // Clear feedback
+      setFeedback('');
       if (currentQuestionIndex < quizData.length - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
         setTimeLeft(10); // Reset timer for the next question
@@ -83,69 +81,66 @@ const fetchQuizData = async () => {
   // Calculate the final score
   const calculateScore = () => {
     let totalScore = 0;
-    quizData.forEach((question) => {
-      const selectedOption = selectedAnswers[question.id];
-      if (selectedOption && selectedOption.is_correct) {
-        totalScore += 4; // Assuming 4 points for each correct answer
+    quizData.forEach((question, index) => {
+      const selectedOption = selectedAnswers[index];
+      if (selectedOption === question.correctAnswer) {
+        totalScore += 4; // Assuming 4 points per correct answer
       }
     });
     return totalScore;
   };
 
   if (loading) {
-  return <div className="container">Loading...</div>;
-}
+    return <div className="container">Loading...</div>;
+  }
 
-if (error) {
-  return <div className="container">{error}</div>;
-}
+  if (error) {
+    return <div className="container">{error}</div>;
+  }
 
-if (!quizData || quizData.length === 0) {
-  return <div className="container">No questions available.</div>;
-}
+  if (showResults) {
+    const totalScore = calculateScore();
+    const maxScore = quizData.length * 4; // Maximum possible score
+    const perfectScore = totalScore === maxScore;
 
-if (showResults) {
-  const totalScore = calculateScore();
-  const maxScore = quizData.length * 4; // Maximum possible score
-  const perfectScore = totalScore === maxScore;
+    return (
+      <div className="container results">
+        <h1>Quiz Results</h1>
+        <p>Total Score: {totalScore}</p>
+        {perfectScore && <p className="perfect-score">🎉 Perfect Score! 🎉</p>}
+        {!perfectScore && <p>Keep practicing to improve your score!</p>}
+        {/* Footer */}
+        <footer className="footer">
+          <p>Connect with me:</p>
+          <div className="social-links">
+            <a
+              href="https://github.com/your-username"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-link github"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/your-profile"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-link linkedin"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="mailto:your-email@example.com"
+              className="social-link gmail"
+            >
+              Gmail
+            </a>
+          </div>
+        </footer>
+      </div>
+    );
+  }
 
-  return (
-    <div className="container results">
-      <h1>Quiz Results</h1>
-      <p>Total Score: {totalScore}</p>
-      {perfectScore && <p className="perfect-score">🎉 Perfect Score! 🎉</p>}
-      {!perfectScore && <p>Keep practicing to improve your score!</p>}
-      {/* Footer */}
-      <footer className="footer">
-        <p>Connect with me:</p>
-        <div className="social-links">
-          <a
-            href="https://github.com/rahulvarmaviit"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-link github"
-          >
-            GitHub
-          </a>
-          <a
-            href="http://www.linkedin.com/in/rahul-varma-vatsavai-62a051290"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-link linkedin"
-          >
-            LinkedIn
-          </a>
-          <a
-            href="mailto:rahulvarmaviit@gmail.com"
-            className="social-link gmail"
-          >
-            Gmail
-          </a>
-        </div>
-      </footer>
-    </div>
-  );
-}
   const currentQuestion = quizData[currentQuestionIndex];
 
   if (!currentQuestion) {
@@ -170,19 +165,19 @@ if (showResults) {
       <p className="timer">Time Left: {timeLeft} seconds</p>
 
       {/* Current Question */}
-      <h3 className="question">{currentQuestion.description}</h3>
+      <h3 className="question">{currentQuestion.question}</h3>
       <ul className="options">
         {currentQuestion.options.map((option, optionIndex) => (
           <li key={optionIndex}>
             <label>
               <input
                 type="radio"
-                name={`question-${currentQuestion.id}`}
-                value={option.id}
-                checked={selectedAnswers[currentQuestion.id]?.id === option.id}
-                onChange={() => handleAnswerSelect(currentQuestion.id, option)}
+                name={`question-${currentQuestionIndex}`}
+                value={option}
+                checked={selectedAnswers[currentQuestionIndex] === option}
+                onChange={() => handleAnswerSelect(option)}
               />
-              {option.description}
+              {option}
             </label>
           </li>
         ))}
@@ -203,7 +198,7 @@ if (showResults) {
         <p>Connect with me:</p>
         <div className="social-links">
           <a
-            href="https://github.com/rahulvarmaviit"
+            href="https://github.com/your-username"
             target="_blank"
             rel="noopener noreferrer"
             className="social-link github"
@@ -211,7 +206,7 @@ if (showResults) {
             GitHub
           </a>
           <a
-            href="http://www.linkedin.com/in/rahul-varma-vatsavai-62a051290"
+            href="https://www.linkedin.com/in/your-profile"
             target="_blank"
             rel="noopener noreferrer"
             className="social-link linkedin"
@@ -219,7 +214,7 @@ if (showResults) {
             LinkedIn
           </a>
           <a
-            href="mailto:rahulvarmaviit@gmail.com"
+            href="mailto:your-email@example.com"
             className="social-link gmail"
           >
             Gmail

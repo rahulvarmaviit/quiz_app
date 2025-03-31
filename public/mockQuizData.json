@@ -1,0 +1,60 @@
+{
+    "testName": "III CSE 2026",
+    "categories": [
+      {
+        "categoryName": "Coding",
+        "questions": [
+          {
+            "question": "What is the capital of France?",
+            "options": ["London", "Paris", "Berlin", "Madrid"],
+            "correctAnswer": "Paris"
+          },
+          {
+            "question": "What does HTML stand for?",
+            "options": ["Hyper Text Markup Language", "High Tech Multi Language", "Hyper Transfer Markup Language", "None of the above"],
+            "correctAnswer": "Hyper Text Markup Language"
+          },
+          {
+            "question": "What is the main use of CSS?",
+            "options": ["Styling", "Logic", "Database", "Authentication"],
+            "correctAnswer": "Styling"
+          },
+          {
+            "question": "What is the time complexity of binary search?",
+            "options": ["O(n)", "O(log n)", "O(n^2)", "O(1)"],
+            "correctAnswer": "O(log n)"
+          },
+          {
+            "question": "Which HTTP status code indicates a successful request?",
+            "options": ["200 OK", "404 Not Found", "500 Internal Server Error", "301 Moved Permanently"],
+            "correctAnswer": "200 OK"
+          },
+          {
+            "question": "What does the 'this' keyword refer to in JavaScript?",
+            "options": ["The global object", "The current function", "The parent element", "The object it belongs to"],
+            "correctAnswer": "The object it belongs to"
+          },
+          {
+            "question": "What is the output of console.log(0.1 + 0.2)?",
+            "options": ["0.3", "0.30000000000000004", "NaN", "0.30"],
+            "correctAnswer": "0.30000000000000004"
+          },
+          {
+            "question": "What is the difference between == and === in JavaScript?",
+            "options": ["== checks value, === checks type and value", "== checks type, === checks value", "== checks reference, === checks value", "No difference"],
+            "correctAnswer": "== checks value, === checks type and value"
+          },
+          {
+            "question": "What is the purpose of the 'async' keyword in JavaScript?",
+            "options": ["Makes functions run faster", "Allows functions to return promises", "Prevents errors", "Creates a new thread"],
+            "correctAnswer": "Allows functions to return promises"
+          },
+          {
+            "question": "What is the default value of uninitialized variables in JavaScript?",
+            "options": ["null", "undefined", "0", "false"],
+            "correctAnswer": "undefined"
+          }
+        ]
+      }
+    ]
+  }
